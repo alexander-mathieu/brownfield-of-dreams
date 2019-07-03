@@ -1,4 +1,6 @@
 class UserShowFacade
+  attr_reader :token
+
   def initialize(user)
     @user = user
     @token = user.github_token
