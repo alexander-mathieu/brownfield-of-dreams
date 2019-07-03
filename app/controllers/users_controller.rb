@@ -1,5 +1,10 @@
 class UsersController < ApplicationController
+
   def show
+    render locals: {
+      facade: UserShowFacade.new(current_user),
+      token: current_user.github_token
+    }
   end
 
   def new
@@ -22,5 +27,4 @@ class UsersController < ApplicationController
   def user_params
     params.require(:user).permit(:email, :first_name, :last_name, :password)
   end
-
 end
