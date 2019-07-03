@@ -11,10 +11,12 @@
     <h1>Bookmarked Segments</h1>
   </section>
 
-  <section>
-    <h1>GitHub Repositories</h1>
-    <% facade.repositories.each do |repo| %>
-      <%= link_to repo.name, repo.html_url %>
-    <% end %>
-  </section>
+  <% if token %>
+    <section>
+      <h1>GitHub Repositories</h1>
+      <% facade.repositories.each do |repo| %>
+        <%= link_to repo.name, repo.html_url %>
+      <% end %>
+    </section>
+  <% end %>
 </section>
