@@ -11,6 +11,10 @@ class UserShowFacade
 
     response = conn.get("/user/repos")
     @repos = JSON.parse(response.body, symbolize_names: true)
+
+    @repos.map do |repo|
+      GitHub::Repository.new(repo)
+    end
   end
 
 end

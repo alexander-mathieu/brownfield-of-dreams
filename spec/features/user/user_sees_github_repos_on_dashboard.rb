@@ -6,7 +6,9 @@ RSpec.describe 'As a logged in User' do
       user = create(:user)
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
 
-      visit dashboard_path
+      VCR.use_cassette("github_user_repos") do
+        visit dashboard_path
+      end
 
       expect(page).to have_content("GitHub Repositories")
       expect(page).to have_link("Repo Number 1")
