@@ -1,20 +1,21 @@
 class UserShowFacade
   def initialize(user)
     @user = user
+    @token = user.github_token
   end
 
-  def repositories
-    conn = Faraday.new(url: "https://api.github.com") do |f|
-      f.headers["Authorization"] = @user.github_token
-      f.adapter Faraday.default_adapter
-    end
+  def repositories(quantity = 5)
+    repos = github_service.repositories_by_user
 
-    response = conn.get("/user/repos")
-    @repos = JSON.parse(response.body, symbolize_names: true)
-
-    @repos.map do |repo|
+    repos[0..(quantity - 1)].map do |repo|
       GitHub::Repository.new(repo)
     end
+  end
+
+  private
+
+  def github_service
+    GithubService.new(@token)
   end
 
 end
