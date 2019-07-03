@@ -17,5 +17,4 @@ class UserShowFacade
   def github_service
     GithubService.new(@token)
   end
-
 end
