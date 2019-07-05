@@ -5,7 +5,7 @@ module GitHub
 
     def initialize(attributes)
       @name = attributes[:login]
-      @html_url  =  attributes[:html_url]
+      @html_url = attributes[:html_url]
     end
   end
 end
