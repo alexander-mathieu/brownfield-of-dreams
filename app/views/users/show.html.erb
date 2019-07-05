@@ -12,13 +12,24 @@
   </section>
 
   <% if facade.token %>
-    <section>
-      <h1>GitHub Repositories</h1>
-      <ul>
-      <% facade.repositories.each do |repo| %>
-        <li><%= link_to repo.name, repo.html_url %></li>
-      <% end %>
-      </ul>
+    <section class='github-dashboard'>
+      <h1>GitHub</h1>
+      <section class='github-dashboard-repos'>
+        <h2>Repositories</h2>
+          <ul>
+          <% facade.repositories.each do |repo| %>
+            <li><%= link_to repo.name, repo.html_url %></li>
+          <% end %>
+          </ul>
+      </section>
+      <section class='github-dashboard-followers'>
+        <h2>Followers</h2>
+          <ul>
+          <% facade.followers.each do |follower| %>
+            <li><%= link_to follower.name, follower.html_url %></li>
+          <% end %>
+          </ul>
+      </section>
     </section>
   <% end %>
 </section>
