@@ -2,9 +2,9 @@
 
 require 'rails_helper'
 
-RSpec.describe 'As a logged in User' do
-  describe 'when I visit my dashboard' do
-    it 'displays github section with five repositories' do
+RSpec.describe 'as a registered user' do
+  context 'when I visit my dashboard' do
+    it 'I see a section for GitHub with five repositories' do
       user = create(:user, github_token: 'github_token')
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
 
