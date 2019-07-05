@@ -38,4 +38,20 @@ RSpec.describe GithubService do
       expect(user_repos.first).to have_key(:html_url)
     end
   end
+
+  context '#following_by_user' do
+    it 'returns following when a valid user token is passed in' do
+      stub_data = File.read('./fixtures/github_following_by_user.json')
+
+      stub_request(:get, 'https://api.github.com/user/following').to_return(status: 200, body: stub_data)
+
+      user_repos = subject.following_by_user
+
+      expect(user_repos).to be_an Array
+      expect(user_repos.count).to eq(6)
+      expect(user_repos.first).to be_a Hash
+      expect(user_repos.first).to have_key(:login)
+      expect(user_repos.first).to have_key(:html_url)
+    end
+  end
 end
