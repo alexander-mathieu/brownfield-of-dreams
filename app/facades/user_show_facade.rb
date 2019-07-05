@@ -6,6 +6,14 @@ class UserShowFacade
     @token = user.github_token
   end
 
+  def followers
+    users = github_service.followers_by_user
+
+    users.map do |user|
+      GitHub::User.new(user)
+    end
+  end
+
   def repositories(quantity = 5)
     repos = github_service.repositories_by_user
 
