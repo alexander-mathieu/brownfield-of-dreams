@@ -6,7 +6,7 @@ RSpec.describe 'as a registered user' do
       user = create(:user, github_token: ENV['GITHUB-TOKEN'])
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
 
-      VCR.use_cassette('github_user_followers') do
+      VCR.use_cassette('github_dashboard') do
         visit dashboard_path
       end
 
