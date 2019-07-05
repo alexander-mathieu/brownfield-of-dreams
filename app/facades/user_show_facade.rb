@@ -14,6 +14,14 @@ class UserShowFacade
     end
   end
 
+  def following
+    users = github_service.following_by_user
+
+    users.map do |user|
+      GitHub::User.new(user)
+    end
+  end
+
   def repositories(quantity = 5)
     repos = github_service.repositories_by_user
 
