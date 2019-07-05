@@ -15,7 +15,7 @@
     <section class='github-dashboard'>
       <h1>GitHub</h1>
       <section class='github-dashboard-repos'>
-        <h2>Repositories</h2>
+        <h3>Repositories</h3>
           <ul>
           <% facade.repositories.each do |repo| %>
             <li><%= link_to repo.name, repo.html_url %></li>
@@ -23,10 +23,18 @@
           </ul>
       </section>
       <section class='github-dashboard-followers'>
-        <h2>Followers</h2>
+        <h3>Followers</h3>
           <ul>
-          <% facade.followers.each do |follower| %>
-            <li><%= link_to follower.name, follower.html_url %></li>
+          <% facade.followers.each do |user| %>
+            <li><%= link_to user.name, user.html_url %></li>
+          <% end %>
+          </ul>
+      </section>
+      <section class='github-dashboard-following'>
+        <h3>Following</h3>
+          <ul>
+          <% facade.following.each do |user| %>
+            <li><%= link_to user.name, user.html_url %></li>
           <% end %>
           </ul>
       </section>
