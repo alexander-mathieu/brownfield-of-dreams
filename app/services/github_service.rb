@@ -7,6 +7,10 @@ class GithubService
     get_json('/user/followers')
   end
 
+  def following_by_user
+    get_json('/user/following')
+  end
+
   def repositories_by_user
     get_json('/user/repos')
   end
