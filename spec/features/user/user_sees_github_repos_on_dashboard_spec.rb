@@ -25,7 +25,7 @@ RSpec.describe 'as a registered user' do
       end
     end
 
-    it 'does not display if user missing a GitHub token' do
+    it "I do not see a GitHub section if I'm missing a GitHub token" do
       user = create(:user)
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
 
@@ -34,7 +34,7 @@ RSpec.describe 'as a registered user' do
       end
 
       expect(page).to_not have_css('.github-dashboard')
-      
+
       expect(page).to_not have_link('1903_final', href: 'https://github.com/alexander-mathieu/1903_final')
       expect(page).to_not have_link('activerecord-obstacle-course', href: 'https://github.com/alexander-mathieu/activerecord-obstacle-course')
       expect(page).to_not have_link('apollo_14', href: 'https://github.com/alexander-mathieu/apollo_14')
