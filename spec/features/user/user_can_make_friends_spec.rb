@@ -20,9 +20,9 @@ RSpec.describe 'As a registered user', type: :feature do
 
     it 'I can see Add as Friend button on unfriended users' do
       brian = create(:user, github_uid: '43261385')
-      brennan = create(:user, github_uid: '45154998')
+      patrick = create(:user, github_uid: '32880860')
       kyle = create(:user, github_uid: '46171611')
-      stella = create(:user)
+      ryan = create(:user)
 
       VCR.use_cassette('github_dashboard') do
         visit dashboard_path
@@ -32,15 +32,15 @@ RSpec.describe 'As a registered user', type: :feature do
         expect(page).to have_button('Add as Friend')
       end
 
-      within('#github-follower-BrennanAyers') do
+      within('#github-follower-patrickshobe') do
         expect(page).to have_button('Add as Friend')
       end
 
-      within('#github-follower-kylecornellissen') do
+      within('#github-follower-kylecornelissen') do
         expect(page).to have_button('Add as Friend')
       end
 
-      within('#github-follower-smainar') do
+      within('#github-follower-ryanmillergm') do
         expect(page).to_not have_button('Add as Friend')
       end
     end
