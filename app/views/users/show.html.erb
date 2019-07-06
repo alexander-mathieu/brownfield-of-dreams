@@ -35,7 +35,12 @@
         <h3>Followers</h3>
           <ul>
           <% facade.followers.each do |user| %>
-            <li><%= link_to user.name, user.html_url %></li>
+            <div id="github-follower-<%= user.name %>">
+              <li><%= link_to user.name, user.html_url %></li>
+              <% if user.registered? %>
+                <%= button_to 'Add as Friend', add_friend_path(user.uid) %>
+              <% end %>
+            </div>
           <% end %>
           </ul>
       </section>
