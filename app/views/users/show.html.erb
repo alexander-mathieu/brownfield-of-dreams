@@ -11,6 +11,15 @@
     <h1>Bookmarked Segments</h1>
   </section>
 
+  <section class='friendships'>
+    <h1>Friends</h1>
+    <% if current_user.friendships? %>
+      <p>You have friends!</p>
+    <% else %>
+      <p>You have no friends :(</p>
+    <% end %>
+  </section>
+
   <% if facade.token %>
     <section class='github-dashboard'>
       <h1>GitHub</h1>
@@ -40,6 +49,6 @@
       </section>
     </section>
   <% else %>
-    <%= link_to 'Connect to GitHub', '/auth/github' %> 
+    <%= link_to 'Connect to GitHub', '/auth/github' %>
   <% end %>
 </section>
