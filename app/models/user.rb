@@ -13,4 +13,8 @@ class User < ApplicationRecord
     update_attributes(github_token: auth_hash[:credentials][:token])
     update_attributes(github_uid: auth_hash[:uid])
   end
+
+  def friendships?
+    friendships.count > 0
+  end
 end
