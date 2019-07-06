@@ -7,7 +7,7 @@ RSpec.describe 'as a registered user' do
 
       visit '/'
 
-      click_on "Sign In"
+      click_on 'Sign In'
       fill_in 'session[email]', with: @user.email
       fill_in 'session[password]', with: @user.password
 
@@ -26,7 +26,7 @@ RSpec.describe 'as a registered user' do
         OmniAuth.config.mock_auth[:github] = OmniAuth::AuthHash.new({
           provider: 'github',
           uid: '123545',
-          credentials: {token: '765434'}
+          credentials: { token: '765434' }
         })
 
         VCR.use_cassette('github_dashboard') do
