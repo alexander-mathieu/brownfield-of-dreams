@@ -8,7 +8,9 @@ RSpec.describe 'As a registered user', type: :feature do
     end
 
     it 'I can see a Friendship section' do
-      visit dashboard_path
+      VCR.use_cassette('github_dashboard') do
+        visit dashboard_path
+      end
 
       within('.friendships') do
         expect(page).to have_content('Friends')
