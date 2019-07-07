@@ -37,7 +37,7 @@
           <% facade.followers.each do |user| %>
             <div id="github-follower-<%= user.name %>">
               <li><%= link_to user.name, user.html_url %></li>
-              <% if user.registered? %>
+              <% if user.registered? && !current_user.friends?(user) %>
                 <%= button_to 'Add as Friend', add_friend_path(user.uid) %>
               <% end %>
             </div>
@@ -48,7 +48,12 @@
         <h3>Following</h3>
           <ul>
           <% facade.following.each do |user| %>
+          <div id="github-following-<%= user.name %>">
             <li><%= link_to user.name, user.html_url %></li>
+            <% if user.registered? && !current_user.friends?(user) %>
+              <%= button_to 'Add as Friend', add_friend_path(user.uid) %>
+            <% end %>
+          </div>
           <% end %>
           </ul>
       </section>
