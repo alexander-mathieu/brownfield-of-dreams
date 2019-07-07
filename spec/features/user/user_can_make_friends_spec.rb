@@ -75,6 +75,10 @@ RSpec.describe 'As a registered user', type: :feature do
         expect(page).to_not have_button('Add as Friend')
       end
       expect(page).to have_content("Congrats, you are now friends with #{patrick.first_name + ' ' + patrick.last_name}!")
+
+      within('.friendships') do
+        expect(page).to have_content(patrick.first_name + ' ' + patrick.last_name)
+      end
     end
   end
 end
