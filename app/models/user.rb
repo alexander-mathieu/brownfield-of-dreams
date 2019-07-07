@@ -20,4 +20,9 @@ class User < ApplicationRecord
   def friendships?
     friendships.count > 0
   end
+
+  def friends?(github_user)
+    friend = User.find_by(github_uid: github_user.uid)
+    friends.include?(friend)
+  end
 end
