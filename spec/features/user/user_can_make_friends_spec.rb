@@ -43,6 +43,14 @@ RSpec.describe 'As a registered user', type: :feature do
       within('#github-follower-ryanmillergm') do
         expect(page).to_not have_button('Add as Friend')
       end
+
+      within('#github-following-bplantico') do
+        expect(page).to have_button('Add as Friend')
+      end
+
+      within('#github-following-kylecornelissen') do
+        expect(page).to have_button('Add as Friend')
+      end
     end
 
     it 'I can Add a Friend using the button on unfriended users' do
