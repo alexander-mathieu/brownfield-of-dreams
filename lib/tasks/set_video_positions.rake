@@ -15,6 +15,6 @@ namespace :videos do
         end
       end
 
-      puts "All video positions have been updated."
+      puts 'All video positions have been updated.'
     end
 end
