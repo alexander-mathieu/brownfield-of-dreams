@@ -26,19 +26,51 @@ RSpec.describe 'As a registered user' do
         expect(page).to have_field(:github_handle)
         expect(page).to have_button('Send Invite')
       end
+
+      describe 'and fill in form with a valid GitHub handle and submit' do
+        it "I'm navigated back to my dashboard and see a success message" do
+          fill_in :github_handle, with: 'WHomer'
+
+          VCR.use_cassette('send-email-success') do
+            click_button 'Send Invite'
+          end
+
+          expect(current_path).to eq(dashboard_path)
+          expect(page).to have_content('Successfully sent invite!')
+        end
+      end
+
+      describe 'and fill in form with valid GitHub handle with no public email' do
+        it "I'm navigated back to my dashboard and see a failure message" do
+          fill_in :github_handle, with: 'BrennanAyers'
+
+          VCR.use_cassette('send-email-failure') do
+            click_button 'Send Invite'
+          end
+
+          expect(current_path).to eq(dashboard_path)
+          expect(page).to have_content("The Github user you selected doesn't have an email address associated with their account.")
+        end
+      end
+
+      describe 'and fill in form with an invalid GitHub handle' do
+        it "I'm navigated back to my dashboard and see a failure message" do
+          fill_in :github_handle, with: 'sdfgrghwetwertwerwerertewt'
+
+          VCR.use_cassette('send-email-invalid') do
+            click_button 'Send Invite'
+          end
+
+          expect(current_path).to eq(dashboard_path)
+          expect(page).to have_content("The Github user you selected doesn't have an email address associated with their account.")
+        end
+      end
     end
   end
 end
 
-
-
 # Background: We want to be able to enter a user's Github handle and send them an email invite to our app. You'll use the Github API to retrieve the email address of the invitee.
-#
-# As a registered user
-# When I visit /dashboard
-# And I click "Send an Invite"
-# Then I should be on /invite
-#
+
 # And when I fill in "Github Handle" with <A VALID GITHUB HANDLE>
 # And I click on "Send Invite"
 # Then I should be on /dashboard
