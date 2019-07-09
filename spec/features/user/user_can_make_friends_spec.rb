@@ -54,10 +54,7 @@ RSpec.describe 'As a registered user', type: :feature do
     end
 
     it 'I can Add a Friend using the button on unfriended users' do
-      brian = create(:user, github_uid: '43261385')
       patrick = create(:user, github_uid: '32880860')
-      kyle = create(:user, github_uid: '46171611')
-      ryan = create(:user)
 
       VCR.use_cassette('github_dashboard') do
         visit dashboard_path
@@ -78,6 +75,36 @@ RSpec.describe 'As a registered user', type: :feature do
 
       within('.friendships') do
         expect(page).to have_content(patrick.first_name + ' ' + patrick.last_name)
+      end
+    end
+
+    it 'I can not add a friend using an invalid user id' do
+      patrick = create(:user, github_uid: '32880860')
+
+      VCR.use_cassette('github_dashboard') do
+        visit dashboard_path
+      end
+
+      patrick.update!(github_uid: nil)
+      patrick.reload
+
+      VCR.use_cassette('github_dashboard') do
+        within('#github-follower-patrickshobe') do
+          click_on('Add as Friend')
+        end
+      end
+
+      expect(current_path).to eq(dashboard_path)
+
+      within('#github-follower-patrickshobe') do
+        expect(page).to_not have_button('Add as Friend')
+      end
+      
+      expect(page).to_not have_content("Congrats, you are now friends with #{patrick.first_name + ' ' + patrick.last_name}!")
+      expect(page).to have_content('Oops! Something went wrong!')
+
+      within('.friendships') do
+        expect(page).to_not have_content(patrick.first_name + ' ' + patrick.last_name)
       end
     end
   end
