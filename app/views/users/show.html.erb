@@ -16,6 +16,11 @@
     </ul>
   </section>
 
+  <section>
+    <h1>Invite a Friend</h1>
+    <%= link_to 'Send an Invite', invite_path %>
+  </section>
+
   <section class='friendships'>
     <h1>Friends</h1>
     <% if current_user.friendships? %>
