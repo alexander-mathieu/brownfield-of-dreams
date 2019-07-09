@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 class GitHub::User
   attr_reader :name,
               :html_url,
