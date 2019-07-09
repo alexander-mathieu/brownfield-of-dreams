@@ -16,6 +16,11 @@ RSpec.describe User, type: :model do
     it { should have_many(:videos).through(:user_videos) }
   end
 
+  describe 'relationships' do
+    it { should have_many :friendships }
+    it { should have_many(:friends).through(:friendships) }
+  end
+
   describe 'roles' do
     it 'can be created as default user' do
       user = User.create(email: 'user@email.com', password: 'password', first_name:'Jim', role: 0)

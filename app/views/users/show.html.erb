@@ -16,6 +16,17 @@
     </ul>
   </section>
 
+  <section class='friendships'>
+    <h1>Friends</h1>
+    <% if current_user.friendships? %>
+      <% current_user.friends.each do |friend| %>
+        <p><%= friend.first_name + ' ' + friend.last_name %></p>
+      <% end %>
+    <% else %>
+      <p>You have no friends :(</p>
+    <% end %>
+  </section>
+
   <% if facade.token %>
     <section class='github-dashboard'>
       <h1>GitHub</h1>
@@ -31,7 +42,12 @@
         <h3>Followers</h3>
           <ul>
           <% facade.followers.each do |user| %>
-            <li><%= link_to user.name, user.html_url %></li>
+            <div id="github-follower-<%= user.name %>">
+              <li><%= link_to user.name, user.html_url %></li>
+              <% if user.registered? && !current_user.friends?(user) %>
+                <%= button_to 'Add as Friend', add_friend_path(user.uid) %>
+              <% end %>
+            </div>
           <% end %>
           </ul>
       </section>
@@ -39,7 +55,12 @@
         <h3>Following</h3>
           <ul>
           <% facade.following.each do |user| %>
+          <div id="github-following-<%= user.name %>">
             <li><%= link_to user.name, user.html_url %></li>
+            <% if user.registered? && !current_user.friends?(user) %>
+              <%= button_to 'Add as Friend', add_friend_path(user.uid) %>
+            <% end %>
+          </div>
           <% end %>
           </ul>
       </section>
