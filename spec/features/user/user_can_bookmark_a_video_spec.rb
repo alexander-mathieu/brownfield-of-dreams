@@ -52,6 +52,9 @@ describe 'A registered user' do
       # And the videos should be ordered by their position
       expect(video_2.title).to appear_before(video_1.title)
       expect(video_1.title).to appear_before(video_3.title)
+      expect(page).to have_link(video_1.title, href: tutorial_path(id: video_1.tutorial_id, video_id: video_1.id))
+      expect(page).to have_link(video_2.title, href: tutorial_path(id: video_2.tutorial_id, video_id: video_2.id))
+      expect(page).to have_link(video_3.title, href: tutorial_path(id: video_3.tutorial_id, video_id: video_3.id))
     end
   end
 end
