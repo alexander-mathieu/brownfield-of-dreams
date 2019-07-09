@@ -30,6 +30,10 @@ class UserShowFacade
     end
   end
 
+  def bookmarks
+    Video.user_bookmarks(@user.id)
+  end
+
   private
 
   def github_service
