@@ -1,9 +1,11 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe GitHub::User do
   before :each do
-    attributes = { login: "Joey Bagodonuts",
-                   html_url: "https://joeytime.com" }
+    attributes = { login: 'Joey Bagodonuts',
+                   html_url: 'https://joeytime.com' }
 
     @user = GitHub::User.new(attributes)
   end
@@ -13,7 +15,7 @@ RSpec.describe GitHub::User do
   end
 
   it 'attributes' do
-    expect(@user.name).to eq("Joey Bagodonuts")
-    expect(@user.html_url).to eq("https://joeytime.com")
+    expect(@user.name).to eq('Joey Bagodonuts')
+    expect(@user.html_url).to eq('https://joeytime.com')
   end
 end

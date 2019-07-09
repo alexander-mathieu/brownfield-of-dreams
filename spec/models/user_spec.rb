@@ -36,7 +36,7 @@ RSpec.describe User, type: :model do
     it '#connect_github' do
       user = create(:user)
 
-      auth_hash = { uid: 12345678,
+      auth_hash = { uid: 12_345_678,
                     credentials: { token: 'b1ria2na3nd4bre5n6na7na8re9th10e11b13est' } }
 
       expect(user.github_uid).to eq(nil)
