@@ -18,7 +18,7 @@ class User < ApplicationRecord
   end
 
   def friendships?
-    friendships.count > 0
+    friendships.count.positive?
   end
 
   def friends?(github_user)

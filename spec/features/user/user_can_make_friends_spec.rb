@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 require 'rails_helper'
 
 RSpec.describe 'As a registered user', type: :feature do
@@ -99,7 +100,7 @@ RSpec.describe 'As a registered user', type: :feature do
       within('#github-follower-patrickshobe') do
         expect(page).to_not have_button('Add as Friend')
       end
-      
+
       expect(page).to_not have_content("Congrats, you are now friends with #{patrick.first_name + ' ' + patrick.last_name}!")
       expect(page).to have_content('Oops! Something went wrong!')
 
