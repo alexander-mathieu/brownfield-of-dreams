@@ -9,9 +9,11 @@
   </ul>
   <section id='bookmarks'>
     <h1>Bookmarked Segments</h1>
-    <% facade.bookmarks.each do |bookmark| %>
-      <%= link_to tutorial_path(id: bookmark.tutorial_id, video_id: bookmark.id) %>
-    <% end %>
+    <ul>
+      <% facade.bookmarks.each do |bookmark| %>
+        <li><%= link_to bookmark.title, tutorial_path(id: bookmark.tutorial_id, video_id: bookmark.id) %></li>
+      <% end %>
+    </ul>
   </section>
 
   <% if facade.token %>
