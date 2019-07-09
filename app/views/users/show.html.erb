@@ -7,8 +7,13 @@
     <li> <%= current_user.first_name  %> <%= current_user.last_name %> </li>
     <li> <%= current_user.email%> </li>
   </ul>
-  <section>
+  <section id='bookmarks'>
     <h1>Bookmarked Segments</h1>
+    <ul>
+      <% facade.bookmarks.each do |bookmark| %>
+        <li><%= link_to bookmark.title, tutorial_path(id: bookmark.tutorial_id, video_id: bookmark.id) %></li>
+      <% end %>
+    </ul>
   </section>
 
   <% if facade.token %>

@@ -31,4 +31,30 @@ describe 'A registered user' do
     click_on 'Bookmark'
     expect(page).to have_content("Already in your bookmarks")
   end
+
+  it 'can view their bookmarks on their dashboard' do
+    tutorial_1 = create(:tutorial)
+    tutorial_2 = create(:tutorial)
+    video_1 = create(:video, tutorial_id: tutorial_2.id)
+    video_2 = create(:video, tutorial_id: tutorial_1.id)
+    video_3 = create(:video, tutorial_id: tutorial_2.id)
+    user = create(:user)
+    bookmark_1 = create(:user_video, user: user, video: video_1)
+    bookmark_2 = create(:user_video, user: user, video: video_2)
+    bookmark_3 = create(:user_video, user: user, video: video_3)
+    # As a logged in user
+    allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
+    # When I visit '/dashboard'
+    visit dashboard_path
+    # Then I should see a list of all bookmarked segments under the Bookmarked Segments section
+    within '#bookmarks' do
+      # And they should be organized by which tutorial they are a part of
+      # And the videos should be ordered by their position
+      expect(video_2.title).to appear_before(video_1.title)
+      expect(video_1.title).to appear_before(video_3.title)
+      expect(page).to have_link(video_1.title, href: tutorial_path(id: video_1.tutorial_id, video_id: video_1.id))
+      expect(page).to have_link(video_2.title, href: tutorial_path(id: video_2.tutorial_id, video_id: video_2.id))
+      expect(page).to have_link(video_3.title, href: tutorial_path(id: video_3.tutorial_id, video_id: video_3.id))
+    end
+  end
 end
