@@ -39,6 +39,8 @@ Rails.application.routes.draw do
 
   resources :users, only: [:new, :create, :update, :edit]
 
+  get '/invite', to: 'invite#new'
+
   post '/add_friend/:uid', to: 'friendships#create', as: 'add_friend'
 
   resources :tutorials, only: [:show, :index] do
