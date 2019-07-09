@@ -3,6 +3,10 @@ class GithubService
     @user_token = user_token
   end
 
+  def email_query(github_handle)
+    get_json("/users/#{github_handle}")[:email]
+  end
+
   def followers_by_user
     get_json('/user/followers')
   end
