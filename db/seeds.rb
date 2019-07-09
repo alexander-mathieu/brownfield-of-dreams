@@ -126,5 +126,5 @@ m3_tutorial.videos.create!({
 })
 
 User.create!(email: 'admin@example.com', first_name: 'Bossy', last_name: 'McBosserton', password: 'password', role: :admin)
-User.create!(email: 'user1@example.com', first_name: 'Ricky', last_name: 'Bobby', password: 'password', github_token: ENV['GITHUB-TOKEN'], role: :default)
+User.create!(email: 'user1@example.com', first_name: 'Ricky', last_name: 'Bobby', password: 'password', github_token: ENV['GITHUB-TOKEN'], github_login: 'number1orbust', role: :default)
 User.create!(email: 'user2@example.com', first_name: 'Jean', last_name: 'Girard', password: 'password')
