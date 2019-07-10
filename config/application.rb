@@ -25,7 +25,8 @@ module PersonalProject
       address:              'smtp.sendgrid.net',
       port:                 '587',
       domain:               'https://brownest-field.herokuapp.com/',
-      authorization:        "Bearer #{ENV['SENDGRID-API-KEY']}",
+      password:             ENV['SENDGRID-API-KEY'],
+      user_name:            'apikey',
       authentication:       :plain,
       enable_starttls_auto: true
     }
