@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe InviteMailer, type: :mailer do
@@ -7,7 +9,7 @@ RSpec.describe InviteMailer, type: :mailer do
 
       invitee_info = { login: 'sweetactions',
                        html_url: 'https://github.com/high_voltage_when_we_touch',
-                       id: 12345,
+                       id: 12_345,
                        email: 'sweet@actions.com' }
 
       @invitee = GitHub::User.new(invitee_info)
