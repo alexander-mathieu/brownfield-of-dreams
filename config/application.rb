@@ -19,15 +19,15 @@ Bundler.require(*Rails.groups)
 
 module PersonalProject
   class Application < Rails::Application
-   config.action_mailer.delivery_method = :smtp
+    config.action_mailer.delivery_method = :smtp
 
-   config.action_mailer.smtp_settings = {
-     address:              'smtp.sendgrid.net',
-     port:                 '587',
-     domain:               'https://brownest-field.herokuapp.com/',
-     authorization:        "Bearer #{ENV['SENDGRID-API-KEY']}",
-     authentication:       :plain,
-     enable_starttls_auto: true
-   }
+    config.action_mailer.smtp_settings = {
+      address:              'smtp.sendgrid.net',
+      port:                 '587',
+      domain:               'https://brownest-field.herokuapp.com/',
+      authorization:        "Bearer #{ENV['SENDGRID-API-KEY']}",
+      authentication:       :plain,
+      enable_starttls_auto: true
+    }
   end
 end
