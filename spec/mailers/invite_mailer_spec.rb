@@ -21,8 +21,16 @@ RSpec.describe InviteMailer, type: :mailer do
       expect(@mail.from).to eq(['no-reply@brownest-field.herokuapp.com'])
     end
 
-    # it 'renders the body' do
-    #   expect(@mail.body.encoded).to match("Hello #{@invitee.name}, #{@user.github_login} has invited you to join the Brownest Field project. You can create an account <a href='http://localhost:3000/register'>here.</a>")
-    # end
+    it 'assigns @name' do
+      expect(@mail.body.encoded).to match(@user.github_login)
+    end
+
+    it 'assigns @github_login' do
+      expect(@mail.body.encoded).to match(@invitee.name)
+    end
+
+    it 'assigns register_url' do
+      expect(@mail.body.encoded).to match('http://localhost:3000/register')
+    end
   end
 end
