@@ -19,15 +19,15 @@ Bundler.require(*Rails.groups)
 
 module PersonalProject
   class Application < Rails::Application
-    # Initialize configuration defaults for originally generated Rails version.
-    config.load_defaults 5.2
+    config.action_mailer.delivery_method = :smtp
 
-    # Settings in config/environments/* take precedence over those specified here.
-    # Application configuration can go into files in config/initializers
-    # -- all .rb files in that directory are automatically loaded after loading
-    # the framework and any gems in your application.
-
-    # Don't generate system test files.
-    config.generators.system_tests = nil
+    config.action_mailer.smtp_settings = {
+      address:              'smtp.sendgrid.net',
+      port:                 '587',
+      domain:               'https://brownest-field.herokuapp.com/',
+      authorization:        "Bearer #{ENV['SENDGRID-API-KEY']}",
+      authentication:       :plain,
+      enable_starttls_auto: true
+    }
   end
 end

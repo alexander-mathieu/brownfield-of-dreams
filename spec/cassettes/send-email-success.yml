@@ -1,0 +1,80 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.github.com/users/WHomer
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Authorization:
+      - token <GITHUB-TOKEN>
+      User-Agent:
+      - Faraday v0.12.2
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Tue, 09 Jul 2019 21:14:13 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Server:
+      - GitHub.com
+      Status:
+      - 200 OK
+      X-Ratelimit-Limit:
+      - '5000'
+      X-Ratelimit-Remaining:
+      - '4999'
+      X-Ratelimit-Reset:
+      - '1562710453'
+      Cache-Control:
+      - private, max-age=60, s-maxage=60
+      Vary:
+      - Accept, Authorization, Cookie, X-GitHub-OTP
+      - Accept-Encoding
+      Etag:
+      - W/"3895653ad9fc617c4e0bb38dd4ea3aee"
+      Last-Modified:
+      - Wed, 03 Jul 2019 21:32:55 GMT
+      X-Oauth-Scopes:
+      - repo
+      X-Accepted-Oauth-Scopes:
+      - ''
+      X-Github-Media-Type:
+      - github.v3; format=json
+      Access-Control-Expose-Headers:
+      - ETag, Link, Location, Retry-After, X-GitHub-OTP, X-RateLimit-Limit, X-RateLimit-Remaining,
+        X-RateLimit-Reset, X-OAuth-Scopes, X-Accepted-OAuth-Scopes, X-Poll-Interval,
+        X-GitHub-Media-Type
+      Access-Control-Allow-Origin:
+      - "*"
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubdomains; preload
+      X-Frame-Options:
+      - deny
+      X-Content-Type-Options:
+      - nosniff
+      X-Xss-Protection:
+      - 1; mode=block
+      Referrer-Policy:
+      - origin-when-cross-origin, strict-origin-when-cross-origin
+      Content-Security-Policy:
+      - default-src 'none'
+      X-Github-Request-Id:
+      - EC45:2779:2F0E6:47D95:5D2503A4
+    body:
+      encoding: ASCII-8BIT
+      string: '{"login":"WHomer","id":18176968,"node_id":"MDQ6VXNlcjE4MTc2OTY4","avatar_url":"https://avatars1.githubusercontent.com/u/18176968?v=4","gravatar_id":"","url":"https://api.github.com/users/WHomer","html_url":"https://github.com/WHomer","followers_url":"https://api.github.com/users/WHomer/followers","following_url":"https://api.github.com/users/WHomer/following{/other_user}","gists_url":"https://api.github.com/users/WHomer/gists{/gist_id}","starred_url":"https://api.github.com/users/WHomer/starred{/owner}{/repo}","subscriptions_url":"https://api.github.com/users/WHomer/subscriptions","organizations_url":"https://api.github.com/users/WHomer/orgs","repos_url":"https://api.github.com/users/WHomer/repos","events_url":"https://api.github.com/users/WHomer/events{/privacy}","received_events_url":"https://api.github.com/users/WHomer/received_events","type":"User","site_admin":false,"name":"William
+        Homer","company":null,"blog":"","location":"Denver, CO","email":"billyhomeriii@gmail.com","hireable":true,"bio":null,"public_repos":75,"public_gists":7,"followers":6,"following":2,"created_at":"2016-03-30T21:08:50Z","updated_at":"2019-07-03T21:32:55Z"}'
+    http_version: 
+  recorded_at: Tue, 09 Jul 2019 21:14:11 GMT
+recorded_with: VCR 4.0.0
