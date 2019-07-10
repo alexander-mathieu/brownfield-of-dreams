@@ -25,11 +25,11 @@ RSpec.describe InviteMailer, type: :mailer do
       expect(@mail.body.encoded).to match('has invited you to join the Brownest Field project. You can create an account')
     end
 
-    it 'assigns @name' do
+    it 'assigns @github_login' do
       expect(@mail.body.encoded).to match(@user.github_login)
     end
 
-    it 'assigns @github_login' do
+    it 'assigns @name' do
       expect(@mail.body.encoded).to match(@invitee.name)
     end
 
