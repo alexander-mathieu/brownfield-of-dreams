@@ -26,4 +26,12 @@ class User < ApplicationRecord
     friend = User.find_by(github_uid: github_user.uid)
     friends.include?(friend)
   end
+
+  def email_status
+    if verified_email
+      'Verified!'
+    else
+      'This account has not yet been verified. Please check your email.'
+    end
+  end
 end
