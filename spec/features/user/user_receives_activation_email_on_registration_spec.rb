@@ -18,7 +18,7 @@ RSpec.describe 'As registered User with unconfirmed email', type: :feature do
       fill_in 'user[password]', with: password
       fill_in 'user[password_confirmation]', with: password
 
-      click_on'Create Account'
+      click_on 'Create Account'
     end
 
     it 'and see messages on my dashboard and not have access to account features' do
@@ -38,6 +38,26 @@ RSpec.describe 'As registered User with unconfirmed email', type: :feature do
   end
 
   context 'I sign in to my existing account' do
-    it 'and see the Please Check Your Email message'
+    it 'and see the Please Check Your Email message' do
+      visit login_path
+
+      user = create(:user, verified_email: false)
+
+      fill_in 'session[email]', with: user.email
+      fill_in 'session[password]', with: user.password
+
+      click_on 'Log In'
+
+      expect(page).to have_content("Logged in as #{user.first_name + ' ' + user.last_name}")
+
+      within '#account-details' do
+        expect(page).to have_content('This account has not yet been verified. Please check your email.')
+      end
+
+      expect(page).to_not have_content('Bookmarked Segments')
+      expect(page).to_not have_link('Send an Invite')
+      expect(page).to_not have_content('Friends')
+      expect(page).to_not have_content('GitHub')
+    end
   end
 end
