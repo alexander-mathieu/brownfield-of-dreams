@@ -16,15 +16,15 @@ RSpec.describe VerificationMailer, type: :mailer do
     end
 
     it 'renders the body' do
-      expect(@mail.body.encoded).to match('Thanks for registering! To confirm your registration, click the link below!')
+      expect(@mail.body.encoded).to match('Thanks for registering! To verify your registration, click the link below!')
     end
 
     it 'assigns @first_name' do
       expect(@mail.body.encoded).to match(@user.first_name)
     end
 
-    it 'assigns @confirmation_token' do
-      expect(@mail.body.encoded).to match(@user.confirmation_token)
+    it 'assigns @verification_token' do
+      expect(@mail.body.encoded).to match(@user.verification_token)
     end
   end
 
