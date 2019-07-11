@@ -5,6 +5,8 @@ class User < ApplicationRecord
   has_many :friendships
   has_many :friends, through: :friendships
 
+  before_create :set_verification_token
+
   validates :email, uniqueness: true, presence: true
   validates_presence_of :first_name
   enum role: [:default, :admin]
@@ -33,5 +35,11 @@ class User < ApplicationRecord
     else
       'This account has not yet been verified. Please check your email.'
     end
+  end
+
+  private
+
+  def set_verification_token
+      self.verification_token = SecureRandom.urlsafe_base64.to_s
   end
 end
