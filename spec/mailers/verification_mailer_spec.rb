@@ -27,5 +27,4 @@ RSpec.describe VerificationMailer, type: :mailer do
       expect(@mail.body.encoded).to match(@user.verification_token)
     end
   end
-
 end
