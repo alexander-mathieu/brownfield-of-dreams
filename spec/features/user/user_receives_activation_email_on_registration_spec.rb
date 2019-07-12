@@ -17,11 +17,11 @@ RSpec.describe 'As registered User with unconfirmed email', type: :feature do
       fill_in 'user[last_name]', with: last_name
       fill_in 'user[password]', with: password
       fill_in 'user[password_confirmation]', with: password
-
-      click_on 'Create Account'
     end
 
     it 'and see messages on my dashboard and not have access to account features' do
+      click_on 'Create Account'
+
       expect(current_path).to eq(dashboard_path)
 
       expect(page).to have_content("Logged in as Kenny Loggins")
@@ -34,6 +34,12 @@ RSpec.describe 'As registered User with unconfirmed email', type: :feature do
       expect(page).to_not have_link('Send an Invite')
       expect(page).to_not have_content('Friends')
       expect(page).to_not have_content('GitHub')
+    end
+
+    it 'and I receive an email to verify my account' do
+      expect { click_on 'Create Account' }.to change { ActionMailer::Base.deliveries.count }.by(1)
+
+      expect(current_path).to eq(dashboard_path)
     end
   end
 
