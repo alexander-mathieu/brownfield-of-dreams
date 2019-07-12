@@ -40,6 +40,6 @@ class User < ApplicationRecord
   private
 
   def set_verification_token
-      self.verification_token = SecureRandom.urlsafe_base64.to_s
+    self.verification_token = SecureRandom.urlsafe_base64.to_s
   end
 end
