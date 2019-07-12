@@ -4,6 +4,13 @@ RSpec.describe Tutorial, type: :model do
   describe 'relationships' do
     it { should have_many :videos }
     it { should accept_nested_attributes_for :videos }
+
+    it 'destroys dependent videos' do
+      tutorial = create(:tutorial)
+      create_list(:video, 4, tutorial: tutorial)
+
+      expect { tutorial.destroy }.to change { Video.count }.by(-4)
+    end
   end
 
   describe 'instance methods' do
