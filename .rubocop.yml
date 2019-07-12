@@ -1,0 +1,14 @@
+AllCops:
+  Exclude:
+    - 'db/**/*'
+    - 'config/**/*'
+    - 'script/**/*'
+    - 'bin/{rails,rake}'
+
+Metrics/LineLength:
+  Exclude:
+    - 'spec'
+
+Metrics/BlockLength:
+  Exclude:
+    - 'spec'
