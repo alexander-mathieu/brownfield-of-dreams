@@ -24,7 +24,7 @@ RSpec.describe 'As registered User with unconfirmed email', type: :feature do
 
       expect(current_path).to eq(dashboard_path)
 
-      expect(page).to have_content("Logged in as Kenny Loggins")
+      expect(page).to have_content('Logged in as Kenny Loggins')
 
       within '#account-details' do
         expect(page).to have_content('This account has not yet been verified. Please check your email.')
