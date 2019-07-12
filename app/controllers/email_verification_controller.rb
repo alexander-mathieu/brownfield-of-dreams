@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class EmailVerificationController < ApplicationController
   def edit
   end
