@@ -42,7 +42,7 @@ Rails.application.routes.draw do
   get  '/invite', to: 'invite#new'
   post '/invite', to: 'invite#create'
 
-  get '/email_verification', to: 'email_verification#new'
+  get '/email_verification', to: 'email_verification#edit'
   patch '/email_verification', to: 'email_verification#update'
 
   post '/add_friend/:uid', to: 'friendships#create', as: 'add_friend'
