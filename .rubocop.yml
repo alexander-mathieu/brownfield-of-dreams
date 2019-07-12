@@ -7,8 +7,8 @@ AllCops:
 
 Metrics/LineLength:
   Exclude:
-    - 'spec'
+    - 'spec/**/*'
 
 Metrics/BlockLength:
   Exclude:
-    - 'spec'
+    - 'spec/**/*'
