@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class UsersController < ApplicationController
 
   def show
@@ -15,6 +17,8 @@ class UsersController < ApplicationController
     if user.save
       session[:user_id] = user.id
       redirect_to dashboard_path
+      flash[:success] = "Logged in as #{user.first_name + ' ' + user.last_name}"
+      VerificationMailer.verification_email(user).deliver_now
     else
       flash[:error] = 'Username already exists'
       render :new

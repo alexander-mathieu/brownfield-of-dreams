@@ -2,75 +2,82 @@
   <h1> <%= current_user.first_name %>'s Dashboard </h1>
 
   <%= button_to 'Log Out', logout_path, method: 'delete', class: "btn btn-primary mb1 bg-teal" %>
-  <h3>Account Details</h3>
-  <ul>
-    <li> <%= current_user.first_name  %> <%= current_user.last_name %> </li>
-    <li> <%= current_user.email%> </li>
-  </ul>
-  <section id='bookmarks'>
-    <h1>Bookmarked Segments</h1>
+
+  <section id='account-details'>
+    <h3>Account Details</h3>
     <ul>
-      <% facade.bookmarks.each do |bookmark| %>
-        <li><%= link_to bookmark.title, tutorial_path(id: bookmark.tutorial_id, video_id: bookmark.id) %></li>
-      <% end %>
+      <li> <%= current_user.first_name  %> <%= current_user.last_name %> </li>
+      <li> <%= current_user.email%> </li>
+      <li>Email Status: <%= current_user.email_status %></li>
     </ul>
   </section>
 
-  <section>
-    <h1>Invite a Friend</h1>
-    <%= link_to 'Send an Invite', invite_path %>
-  </section>
+  <% if current_user.verified_email %>
+    <section id='bookmarks'>
+      <h1>Bookmarked Segments</h1>
+      <ul>
+        <% facade.bookmarks.each do |bookmark| %>
+          <li><%= link_to bookmark.title, tutorial_path(id: bookmark.tutorial_id, video_id: bookmark.id) %></li>
+        <% end %>
+      </ul>
+    </section>
 
-  <section class='friendships'>
-    <h1>Friends</h1>
-    <% if current_user.friendships? %>
-      <% current_user.friends.each do |friend| %>
-        <p><%= friend.first_name + ' ' + friend.last_name %></p>
+    <section>
+      <h1>Invite a Friend</h1>
+      <%= link_to 'Send an Invite', invite_path %>
+    </section>
+
+    <section class='friendships'>
+      <h1>Friends</h1>
+      <% if current_user.friendships? %>
+        <% current_user.friends.each do |friend| %>
+          <p><%= friend.first_name + ' ' + friend.last_name %></p>
+        <% end %>
+      <% else %>
+        <p>You have no friends :(</p>
       <% end %>
-    <% else %>
-      <p>You have no friends :(</p>
-    <% end %>
-  </section>
+    </section>
 
-  <% if facade.token %>
-    <section class='github-dashboard'>
-      <h1>GitHub</h1>
-      <section class='github-dashboard-repos'>
-        <h3>Repositories</h3>
-          <ul>
-          <% facade.repositories.each do |repo| %>
-            <li><%= link_to repo.name, repo.html_url %></li>
-          <% end %>
-          </ul>
-      </section>
-      <section class='github-dashboard-followers'>
-        <h3>Followers</h3>
-          <ul>
-          <% facade.followers.each do |user| %>
-            <div id="github-follower-<%= user.name %>">
+    <% if facade.token %>
+      <section class='github-dashboard'>
+        <h1>GitHub</h1>
+        <section class='github-dashboard-repos'>
+          <h3>Repositories</h3>
+            <ul>
+            <% facade.repositories.each do |repo| %>
+              <li><%= link_to repo.name, repo.html_url %></li>
+            <% end %>
+            </ul>
+        </section>
+        <section class='github-dashboard-followers'>
+          <h3>Followers</h3>
+            <ul>
+            <% facade.followers.each do |user| %>
+              <div id="github-follower-<%= user.name %>">
+                <li><%= link_to user.name, user.html_url %></li>
+                <% if user.registered? && !current_user.friends?(user) %>
+                  <%= button_to 'Add as Friend', add_friend_path(user.uid) %>
+                <% end %>
+              </div>
+            <% end %>
+            </ul>
+        </section>
+        <section class='github-dashboard-following'>
+          <h3>Following</h3>
+            <ul>
+            <% facade.following.each do |user| %>
+            <div id="github-following-<%= user.name %>">
               <li><%= link_to user.name, user.html_url %></li>
               <% if user.registered? && !current_user.friends?(user) %>
                 <%= button_to 'Add as Friend', add_friend_path(user.uid) %>
               <% end %>
             </div>
-          <% end %>
-          </ul>
-      </section>
-      <section class='github-dashboard-following'>
-        <h3>Following</h3>
-          <ul>
-          <% facade.following.each do |user| %>
-          <div id="github-following-<%= user.name %>">
-            <li><%= link_to user.name, user.html_url %></li>
-            <% if user.registered? && !current_user.friends?(user) %>
-              <%= button_to 'Add as Friend', add_friend_path(user.uid) %>
             <% end %>
-          </div>
-          <% end %>
-          </ul>
+            </ul>
+        </section>
       </section>
-    </section>
-  <% else %>
-    <%= link_to 'Connect to GitHub', '/auth/github' %>
+    <% else %>
+      <%= link_to 'Connect to GitHub', '/auth/github' %>
+    <% end %>
   <% end %>
 </section>

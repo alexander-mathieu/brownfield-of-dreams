@@ -1,0 +1,3 @@
+<p>Hi <%= @user.first_name %>! Thanks for registering! To verify your registration, click the link below!</p>
+
+<p><%= link_to 'Verify Your Account', email_verification_url(verification_token: @user.verification_token) %></p>
