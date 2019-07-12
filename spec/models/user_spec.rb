@@ -53,5 +53,41 @@ RSpec.describe User, type: :model do
       expect(user.github_uid.to_i).to eq(auth_hash[:uid])
       expect(user.github_token).to eq(auth_hash[:credentials][:token])
     end
+
+    it '#friendships' do
+      user1 = create(:user)
+      user2 = create(:user)
+
+      user1.friendships.create!(friend: user2)
+
+      expect(user1.friendships?).to eq(true)
+      expect(user2.friendships?).to eq(false)
+
+      user2.friendships.create!(friend: user1)
+
+      expect(user2.friendships?).to eq(true)
+    end
+
+    it '#friends?' do
+      user1 = create(:user, github_uid: '12345')
+      user2 = create(:user, github_uid: '54321')
+      create(:user, github_uid: '67890')
+
+      github_friend = GitHub::User.new(id: '54321')
+      github_not_friend = GitHub::User.new(id: '67890')
+
+      user1.friendships.create!(friend: user2)
+
+      expect(user1.friends?(github_friend)).to eq(true)
+      expect(user1.friends?(github_not_friend)).to eq(false)
+    end
+
+    it '#email_status' do
+      user1 = create(:user, verified_email: true)
+      user2 = create(:user, verified_email: false)
+
+      expect(user1.email_status).to eq('Verified!')
+      expect(user2.email_status).to eq('This account has not yet been verified. Please check your email.')
+    end
   end
 end

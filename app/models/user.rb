@@ -12,8 +12,6 @@ class User < ApplicationRecord
   enum role: [:default, :admin]
   has_secure_password
 
-  # instance methods
-
   def connect_github(auth_hash)
     update_attributes(github_token: auth_hash[:credentials][:token])
     update_attributes(github_login: auth_hash[:login])
