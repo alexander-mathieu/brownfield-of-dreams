@@ -5,14 +5,14 @@ require 'rails_helper'
 RSpec.describe 'As registered User with unconfirmed email', type: :feature do
   context 'I register' do
     before :each do
-      email = 'dangerzone@aol.com'
+      @email = 'dangerzone@aol.com'
       first_name = 'Kenny'
       last_name = 'Loggins'
       password = 'password'
 
       visit register_path
 
-      fill_in 'user[email]', with: email
+      fill_in 'user[email]', with: @email
       fill_in 'user[first_name]', with: first_name
       fill_in 'user[last_name]', with: last_name
       fill_in 'user[password]', with: password
@@ -40,6 +40,32 @@ RSpec.describe 'As registered User with unconfirmed email', type: :feature do
       expect { click_on 'Create Account' }.to change { ActionMailer::Base.deliveries.count }.by(1)
 
       expect(current_path).to eq(dashboard_path)
+    end
+
+    it 'and when I click on the link in the email' do
+      click_on 'Create Account'
+
+      user = User.find_by(email: @email)
+
+      visit email_verification_path(verification_token: user.verification_token)
+
+      expect(user.verified_email). to be false
+
+      click_on 'Verify Account'
+      user.reload
+
+      expect(current_path).to eq(dashboard_path)
+      expect(user.verified_email).to be true
+
+      expect(page).to have_content('Thank you! Your account is now verified!')
+
+      within '#account-details' do
+        expect(page).to have_content('Verified!')
+      end
+
+      expect(page).to have_content('Bookmarked Segments')
+      expect(page).to have_link('Send an Invite')
+      expect(page).to have_content('Friends')
     end
   end
 
