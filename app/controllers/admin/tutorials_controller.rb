@@ -4,12 +4,15 @@ class Admin::TutorialsController < Admin::BaseController
   end
 
   def create
-    tutorial = Tutorial.new(tutorial_params)
+    @tutorial = Tutorial.new(tutorial_params)
 
-    if tutorial.save
+    if @tutorial.save
       flash[:success] = 'Successfully created tutorial.'
+      redirect_to tutorial_path(id: @tutorial.id)
+    else
+      flash[:warning] = 'Please use a valid Youtube video thumbnail.'
+      render new_admin_tutorial_path
     end
-    redirect_to tutorial_path(tutorial)
   end
 
   def new
@@ -28,7 +31,7 @@ class Admin::TutorialsController < Admin::BaseController
   def tutorial_params
     params.require(:tutorial).permit(:title, :description, :thumbnail)
   end
-  
+
   def tutorial_tag_params
     params.require(:tutorial).permit(:tag_list)
   end
