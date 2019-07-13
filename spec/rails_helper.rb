@@ -24,6 +24,7 @@ VCR.configure do |config|
   config.configure_rspec_metadata!
   config.filter_sensitive_data("<YOUTUBE_API_KEY>") { ENV['YOUTUBE_API_KEY'] }
   config.filter_sensitive_data('<GITHUB-TOKEN>') { ENV['GITHUB-TOKEN'] }
+  config.filter_sensitive_data('<GITHUB-TOKEN-TEST>') { ENV['GITHUB-TOKEN-TEST'] }
 end
 
 
