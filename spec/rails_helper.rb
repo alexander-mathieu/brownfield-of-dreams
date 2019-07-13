@@ -1,7 +1,10 @@
 # frozen_string_literal: true
 
 require 'simplecov'
-SimpleCov.start
+
+SimpleCov.start do
+  add_filter '/spec/spec_helper.rb'
+end
 
 require 'spec_helper'
 
@@ -9,6 +12,7 @@ ENV['RAILS_ENV'] ||= 'test'
 require File.expand_path('../../config/environment', __FILE__)
 
 abort("The Rails environment is running in production mode!") if Rails.env.production?
+
 require 'rspec/rails'
 require 'vcr'
 require 'webmock/rspec'
@@ -56,6 +60,6 @@ end
 
 RSpec::Matchers.define :appear_before do |later_content|
   match do |earlier_content|
-    page.body.index(earlier_content) < page.body.index(later_content)
+    page.current_scope.text.index(earlier_content) < page.current_scope.text.index(later_content)
   end
 end

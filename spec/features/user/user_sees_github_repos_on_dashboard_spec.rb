@@ -5,22 +5,27 @@ require 'rails_helper'
 RSpec.describe 'as a registered user' do
   context 'when I visit my dashboard' do
     it 'I see a section for GitHub with five repositories' do
-      user = create(:user, github_token: 'github_token')
+      user = create(:user, github_token: ENV['GITHUB-TOKEN'])
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
 
       VCR.use_cassette('github_dashboard') do
         visit dashboard_path
       end
 
+      expect(page).to have_css('.github-dashboard-repo', count: 5)
+
+      within('.github-dashboard') do
+        within(first('.github-dashboard-repos')) do
+          expect(page).to have_link('ionic-frontend', href: 'https://github.com/ToMarketinc/ionic-frontend')
+        end
+      end
+
       within('.github-dashboard') do
         within('.github-dashboard-repos') do
-          expect(page).to have_content('Repositories')
-          expect(page).to have_link('1903_final', href: 'https://github.com/alexander-mathieu/1903_final')
-          expect(page).to have_link('activerecord-obstacle-course', href: 'https://github.com/alexander-mathieu/activerecord-obstacle-course')
-          expect(page).to have_link('apollo_14', href: 'https://github.com/alexander-mathieu/apollo_14')
-          expect(page).to have_link('backend_prework', href: 'https://github.com/alexander-mathieu/backend_prework')
-          expect(page).to have_link('blogger', href: 'https://github.com/alexander-mathieu/blogger')
-          expect(page).to_not have_link('brownfield-of-dreams')
+          expect('ionic-frontend').to appear_before('brownfield-of-dreams')
+          expect('brownfield-of-dreams').to appear_before('module_3_diagnostic')
+          expect('module_3_diagnostic').to appear_before('little_shop_v2')
+          expect('little_shop_v2').to appear_before('small_shop')
         end
       end
     end
@@ -34,11 +39,8 @@ RSpec.describe 'as a registered user' do
       end
 
       expect(page).to_not have_css('.github-dashboard')
-      expect(page).to_not have_link('1903_final', href: 'https://github.com/alexander-mathieu/1903_final')
-      expect(page).to_not have_link('activerecord-obstacle-course', href: 'https://github.com/alexander-mathieu/activerecord-obstacle-course')
-      expect(page).to_not have_link('apollo_14', href: 'https://github.com/alexander-mathieu/apollo_14')
-      expect(page).to_not have_link('backend_prework', href: 'https://github.com/alexander-mathieu/backend_prework')
-      expect(page).to_not have_link('blogger', href: 'https://github.com/alexander-mathieu/blogger')
+      expect(page).to have_css('.github-dashboard-repo', count: 0)
+      expect(page).to_not have_link('ionic-frontend', href: 'https://github.com/ToMarketinc/ionic-frontend')
     end
   end
 end
