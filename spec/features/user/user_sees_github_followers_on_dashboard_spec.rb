@@ -21,5 +21,20 @@ RSpec.describe 'as a registered user' do
         end
       end
     end
+
+    it 'if I have no followers, I see a message telling me I have no followers' do
+      user = create(:user, github_token: ENV['GITHUB-TOKEN-TEST'])
+      allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
+
+      VCR.use_cassette('github_dashboard_test') do
+        visit dashboard_path
+      end
+
+      within('.github-dashboard') do
+        within('.github-dashboard-followers') do
+          expect(page).to have_content('You have no followers :(')
+        end
+      end
+    end
   end
 end

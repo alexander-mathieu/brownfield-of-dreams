@@ -40,42 +40,56 @@
 
     <% if facade.token %>
       <section class='github-dashboard'>
-        <h1>GitHub</h1>
+      <h1>GitHub</h1>
         <section class='github-dashboard-repos'>
-          <h3>Repositories</h3>
+          <% if !facade.repositories.empty? %>
+            <h3>Repositories</h3>
             <ul>
-            <% facade.repositories.each do |repo| %>
-            <div class='github-dashboard-repo'>
-              <li><%= link_to repo.name, repo.html_url %></li>
-            <% end %>
-            </div>
+              <% facade.repositories.each do |repo| %>
+                <div class='github-dashboard-repo'>
+                  <li><%= link_to repo.name, repo.html_url %></li>
+                </div>
+              <% end %>
             </ul>
+          <% else %>
+            <p>You have no repositories :(</p>
+          <% end %>
         </section>
+
         <section class='github-dashboard-followers'>
           <h3>Followers</h3>
             <ul>
-            <% facade.followers.each do |user| %>
-              <div id="github-follower-<%= user.name %>">
+            <% if !facade.followers.empty? %>
+              <% facade.followers.each do |user| %>
+                <div id="github-follower-<%= user.name %>">
+                  <li><%= link_to user.name, user.html_url %></li>
+                  <% if user.registered? && !current_user.friends?(user) %>
+                    <%= button_to 'Add as Friend', add_friend_path(user.uid) %>
+                  <% end %>
+                </div>
+              <% end %>
+            </ul>
+            <% else %>
+              <p>You have no followers :(</p>
+            <% end %>
+        </section>
+
+        <section class='github-dashboard-following'>
+          <h3>Following</h3>
+          <% if !facade.following.empty? %>
+            <ul>
+            <% facade.following.each do |user| %>
+              <div id="github-following-<%= user.name %>">
                 <li><%= link_to user.name, user.html_url %></li>
                 <% if user.registered? && !current_user.friends?(user) %>
                   <%= button_to 'Add as Friend', add_friend_path(user.uid) %>
+                  <% end %>
+                </div>
                 <% end %>
-              </div>
+              </ul>
+            <% else %>
+              <p>You are not following anyone :(</p>
             <% end %>
-            </ul>
-        </section>
-        <section class='github-dashboard-following'>
-          <h3>Following</h3>
-            <ul>
-            <% facade.following.each do |user| %>
-            <div id="github-following-<%= user.name %>">
-              <li><%= link_to user.name, user.html_url %></li>
-              <% if user.registered? && !current_user.friends?(user) %>
-                <%= button_to 'Add as Friend', add_friend_path(user.uid) %>
-              <% end %>
-            </div>
-            <% end %>
-            </ul>
         </section>
       </section>
     <% else %>

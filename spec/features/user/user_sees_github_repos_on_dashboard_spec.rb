@@ -16,16 +16,31 @@ RSpec.describe 'as a registered user' do
 
       within('.github-dashboard') do
         within(first('.github-dashboard-repos')) do
-          expect(page).to have_link('ionic-frontend', href: 'https://github.com/ToMarketinc/ionic-frontend')
+          expect(page).to have_link('brownfield-of-dreams', href: 'https://github.com/alexander-mathieu/brownfield-of-dreams')
         end
       end
 
       within('.github-dashboard') do
         within('.github-dashboard-repos') do
-          expect('ionic-frontend').to appear_before('brownfield-of-dreams')
-          expect('brownfield-of-dreams').to appear_before('module_3_diagnostic')
+          expect('brownfield-of-dreams').to appear_before('ionic-frontend')
+          expect('ionic-frontend').to appear_before('module_3_diagnostic')
           expect('module_3_diagnostic').to appear_before('little_shop_v2')
           expect('little_shop_v2').to appear_before('small_shop')
+        end
+      end
+    end
+
+    it 'if I have no repos, I see a message telling me so' do
+      user = create(:user, github_token: ENV['GITHUB-TOKEN-TEST'])
+      allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
+
+      VCR.use_cassette('github_dashboard_test') do
+        visit dashboard_path
+      end
+
+      within('.github-dashboard') do
+        within('.github-dashboard-repos') do
+          expect(page).to have_content("You have no repositories :(")
         end
       end
     end
