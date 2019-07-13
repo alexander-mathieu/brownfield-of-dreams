@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class UsersController < ApplicationController
+  before_action :require_current_user, only: :show
 
   def show
     render locals: {
@@ -21,6 +22,7 @@ class UsersController < ApplicationController
       VerificationMailer.verification_email(user).deliver_now
     else
       flash[:error] = 'Username already exists'
+      @user = User.new(user_params)
       render :new
     end
   end
