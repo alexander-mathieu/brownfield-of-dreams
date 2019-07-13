@@ -30,10 +30,9 @@ RSpec.describe 'As an Admin user', type: :feature do
       expect(page).to have_css("img[src='https://i.ytimg.com/vi/Drqj67ImtxI/hqdefault.jpg']")
     end
 
-    it 'I fail to create a bad tutorial' do
+    it 'I fail to create a tutorial if I provide invalid information' do
       visit new_admin_tutorial_path
-
-      fill_in 'tutorial[title]', with: 'How to Learn like a Learner'
+      
       fill_in 'tutorial[description]', with: 'Now with new Learnings!'
       fill_in 'tutorial[thumbnail]', with: 'https://www.notavalid.com/youtube/thumbnmail.jpg'
 
