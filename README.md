@@ -47,6 +47,9 @@ $ rake db:create
 $ rake db:migrate
 $ rake db:seed
 ```
+IF VIDEOS NOT LOADING DUE TO MISSING POSITIONS:
+Run from command line:
+`rake videos:set_position_if_missing`
 
 Run the test suite:
 ```ruby

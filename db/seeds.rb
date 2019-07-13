@@ -125,7 +125,18 @@ m3_tutorial.videos.create!({
   'position' => 6
 })
 
+mod_3fe_tutorial_data = {
+  'title' => 'Front End Engineering - Module 3',
+  'description' => 'Videos related to Front End Mod 3.',
+  'thumbnail' => 'https://i.ytimg.com/vi/tZDBWXZzLPk/hqdefault.jpg',
+  'classroom' => true
+}
+
+mod_3fe_tutorial = Tutorial.create! mod_3fe_tutorial_data
+
 User.create!(email: 'admin@example.com', first_name: 'Bossy', last_name: 'McBosserton', password: 'password', role: :admin, verified_email: true)
 User.create!(email: 'user1@example.com', first_name: 'Ricky', last_name: 'Bobby', password: 'password', github_token: ENV['GITHUB-TOKEN'], github_login: 'number1orbust', role: :default, verified_email: true)
 User.create!(email: 'user2@example.com', first_name: 'Jean', last_name: 'Girard', password: 'password', verified_email: true)
 User.create!(email: 'user3@example.com', first_name: 'Cal', last_name: 'Naughton, Jr.', password: 'password', verified_email: true)
+User.create!(email: 'corndog@example.com', first_name: 'Kyle', last_name: 'Corndog', password: 'password', verified_email: true, github_uid: '46171611')
+User.create!(email: 'ryanmillergm@example.com', first_name: 'Ryan', last_name: 'Miller, GM', password: 'password', verified_email: true, github_uid: '42855291')
