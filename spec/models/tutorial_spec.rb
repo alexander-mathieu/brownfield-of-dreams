@@ -1,6 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe Tutorial, type: :model do
+  describe 'validations' do
+    it { should validate_presence_of :title }
+  end
+
   describe 'relationships' do
     it { should have_many :videos }
     it { should accept_nested_attributes_for :videos }
@@ -11,11 +15,6 @@ RSpec.describe Tutorial, type: :model do
 
       expect { tutorial.destroy }.to change { Video.count }.by(-4)
     end
-  end
-
-  describe 'validations' do
-    it { should allow_value('https://i.ytimg.com/vi/fwueifn1368/hqdefault.jpg').for(:thumbnail) }
-    it { should_not allow_value('https://i.ytimg.com/vi/&%^@#&%^/hqdefault.jpg').for(:thumbnail) }
   end
 
   describe 'instance methods' do
