@@ -11,7 +11,7 @@ RSpec.describe GithubService do
     it 'returns repos when valid user token is passed in' do
       stub_data = File.read('./fixtures/github_repos_by_user.json')
 
-      stub_request(:get, 'https://api.github.com/user/repos').to_return(status: 200, body: stub_data)
+      stub_request(:get, 'https://api.github.com/user/repos?sort=updated').to_return(status: 200, body: stub_data)
 
       user_repos = subject.repositories_by_user
 
