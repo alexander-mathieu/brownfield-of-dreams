@@ -2,6 +2,8 @@ class Admin::BaseController < ApplicationController
   before_action :require_admin
 
   def require_admin
-    render file: 'public/404', status: 404 unless current_user && current_user.admin?
+    unless current_user && current_user.admin?
+      render file: 'public/404', status: 404
+    end
   end
 end
