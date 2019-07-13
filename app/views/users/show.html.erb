@@ -42,8 +42,8 @@
       <section class='github-dashboard'>
       <h1>GitHub</h1>
         <section class='github-dashboard-repos'>
+          <h3>Repositories</h3>
           <% if !facade.repositories.empty? %>
-            <h3>Repositories</h3>
             <ul>
               <% facade.repositories.each do |repo| %>
                 <div class='github-dashboard-repo'>
@@ -58,8 +58,8 @@
 
         <section class='github-dashboard-followers'>
           <h3>Followers</h3>
-            <ul>
             <% if !facade.followers.empty? %>
+              <ul>
               <% facade.followers.each do |user| %>
                 <div id="github-follower-<%= user.name %>">
                   <li><%= link_to user.name, user.html_url %></li>
