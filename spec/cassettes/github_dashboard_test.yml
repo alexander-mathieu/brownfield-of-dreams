@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: https://api.github.com/user/repos?sort=updated
+    uri: https://api.github.com/user/repos?page=1&per_page=5&sort=updated
     body:
       encoding: US-ASCII
       string: ''
@@ -21,7 +21,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Sat, 13 Jul 2019 17:11:59 GMT
+      - Sat, 13 Jul 2019 19:46:50 GMT
       Content-Type:
       - application/json; charset=utf-8
       Content-Length:
@@ -33,9 +33,9 @@ http_interactions:
       X-Ratelimit-Limit:
       - '5000'
       X-Ratelimit-Remaining:
-      - '4989'
+      - '4996'
       X-Ratelimit-Reset:
-      - '1563041519'
+      - '1563050810'
       Cache-Control:
       - private, max-age=60, s-maxage=60
       Vary:
@@ -68,12 +68,12 @@ http_interactions:
       Content-Security-Policy:
       - default-src 'none'
       X-Github-Request-Id:
-      - DF0C:74CF:1B80F7:26CDA5:5D2A10DF
+      - E924:3EAA:6C3E99:A2BCB6:5D2A3529
     body:
       encoding: UTF-8
       string: "[]"
     http_version: 
-  recorded_at: Sat, 13 Jul 2019 17:11:57 GMT
+  recorded_at: Sat, 13 Jul 2019 19:46:49 GMT
 - request:
     method: get
     uri: https://api.github.com/user/followers
@@ -95,7 +95,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Sat, 13 Jul 2019 17:12:00 GMT
+      - Sat, 13 Jul 2019 19:46:50 GMT
       Content-Type:
       - application/json; charset=utf-8
       Content-Length:
@@ -107,9 +107,9 @@ http_interactions:
       X-Ratelimit-Limit:
       - '5000'
       X-Ratelimit-Remaining:
-      - '4988'
+      - '4995'
       X-Ratelimit-Reset:
-      - '1563041520'
+      - '1563050810'
       Cache-Control:
       - private, max-age=60, s-maxage=60
       Vary:
@@ -142,12 +142,12 @@ http_interactions:
       Content-Security-Policy:
       - default-src 'none'
       X-Github-Request-Id:
-      - DF0E:28ED:F0EA3:160777:5D2A10DF
+      - E925:7A16:75C5FE:B1CC37:5D2A352A
     body:
       encoding: UTF-8
       string: "[]"
     http_version: 
-  recorded_at: Sat, 13 Jul 2019 17:11:58 GMT
+  recorded_at: Sat, 13 Jul 2019 19:46:49 GMT
 - request:
     method: get
     uri: https://api.github.com/user/following
@@ -169,7 +169,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Sat, 13 Jul 2019 17:12:00 GMT
+      - Sat, 13 Jul 2019 19:46:51 GMT
       Content-Type:
       - application/json; charset=utf-8
       Content-Length:
@@ -181,9 +181,9 @@ http_interactions:
       X-Ratelimit-Limit:
       - '5000'
       X-Ratelimit-Remaining:
-      - '4987'
+      - '4994'
       X-Ratelimit-Reset:
-      - '1563041520'
+      - '1563050811'
       Cache-Control:
       - private, max-age=60, s-maxage=60
       Vary:
@@ -216,10 +216,10 @@ http_interactions:
       Content-Security-Policy:
       - default-src 'none'
       X-Github-Request-Id:
-      - DF0F:27C5:11C0B1:1A213B:5D2A10E0
+      - E926:3E8F:6E1AFE:A389FC:5D2A352B
     body:
       encoding: UTF-8
       string: "[]"
     http_version: 
-  recorded_at: Sat, 13 Jul 2019 17:11:58 GMT
+  recorded_at: Sat, 13 Jul 2019 19:46:50 GMT
 recorded_with: VCR 4.0.0
