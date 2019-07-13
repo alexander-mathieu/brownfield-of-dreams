@@ -25,7 +25,7 @@ RSpec.describe 'as a registered user' do
           expect('brownfield-of-dreams').to appear_before('ionic-frontend')
           expect('ionic-frontend').to appear_before('module_3_diagnostic')
           expect('module_3_diagnostic').to appear_before('little_shop_v2')
-          expect('little_shop_v2').to appear_before('small_shop')
+          expect('little_shop_v2').to appear_before('sweets_shop')
         end
       end
     end
