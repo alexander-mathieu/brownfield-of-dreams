@@ -13,6 +13,11 @@ RSpec.describe Tutorial, type: :model do
     end
   end
 
+  describe 'validations' do
+    it { should allow_value('https://i.ytimg.com/vi/fwueifn1368/hqdefault.jpg').for(:thumbnail) }
+    it { should_not allow_value('https://i.ytimg.com/vi/&%^@#&%^/hqdefault.jpg').for(:thumbnail) }
+  end
+
   describe 'instance methods' do
     it '#classroom?' do
       t1 = create(:classroom_tutorial)
