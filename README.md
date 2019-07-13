@@ -47,9 +47,6 @@ $ rake db:create
 $ rake db:migrate
 $ rake db:seed
 ```
-IF VIDEOS NOT LOADING DUE TO MISSING POSITIONS:
-Run from command line:
-`rake videos:set_position_if_missing`
 
 Additionally, you'll need:
  * An API key with YouTube and have it defined within `ENV['YOUTUBE_API_KEY']`
@@ -58,7 +55,7 @@ Additionally, you'll need:
  * A GitHub client ID defined within `ENV['GITHUB-CLIENT-ID']`
  * A GitHub client secret defined within `ENV['GITHUB-CLIENT-SECRET']`
 
-Information on setting up a GitHub client ID/secret can be found [here](https://github.com/settings/apps)
+Information on setting up a GitHub client ID/secret can be found [here](https://github.com/settings/apps).
 
 ## Running Tests
 The full testing suite can be run with `$ bundle exec rspec`.
