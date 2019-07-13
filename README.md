@@ -6,7 +6,7 @@ The deployed site can be viewed [here](https://brownest-field.herokuapp.com/).
 
 Go ahead and make a user account, and see what you can do!
 
-### About the Project
+## About
 
 This is a Ruby on Rails application used to organize YouTube content used for online learning. Each tutorial is a playlist of video segments. Within the application an admin is able to create tags for each tutorial in the database. A visitor or registered user can then filter tutorials based on these tags.
 
