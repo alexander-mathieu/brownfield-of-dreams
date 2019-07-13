@@ -29,5 +29,20 @@ RSpec.describe 'As an Admin user', type: :feature do
       expect(page).to have_content('Now with new Learnings!')
       expect(page).to have_css("img[src='https://i.ytimg.com/vi/Drqj67ImtxI/hqdefault.jpg']")
     end
+
+    it 'I fail to create a bad tutorial' do
+      visit new_admin_tutorial_path
+
+      fill_in 'tutorial[title]', with: 'How to Learn like a Learner'
+      fill_in 'tutorial[description]', with: 'Now with new Learnings!'
+      fill_in 'tutorial[thumbnail]', with: 'https://www.notavalid.com/youtube/thumbnmail.jpg'
+
+      click_on 'Save'
+
+      expect(current_path).to eq(admin_tutorials_path)
+
+      expect(page).to have_content('Please use a valid Youtube video thumbnail.')
+      expect(Tutorial.count).to eq(0)
+    end
   end
 end
