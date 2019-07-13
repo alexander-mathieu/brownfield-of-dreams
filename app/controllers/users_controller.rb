@@ -22,6 +22,7 @@ class UsersController < ApplicationController
       VerificationMailer.verification_email(user).deliver_now
     else
       flash[:error] = 'Username already exists'
+      @user = User.new(user_params)
       render :new
     end
   end
