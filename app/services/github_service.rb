@@ -18,7 +18,7 @@ class GithubService
   def repositories_by_user
     get_json('/user/repos', sort: 'updated',
                             page: 1,
-                            per_page: 5 )
+                            per_page: 5)
   end
 
   private
