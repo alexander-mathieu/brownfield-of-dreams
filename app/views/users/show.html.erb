@@ -45,8 +45,10 @@
           <h3>Repositories</h3>
             <ul>
             <% facade.repositories.each do |repo| %>
+            <div class='github-dashboard-repo'>
               <li><%= link_to repo.name, repo.html_url %></li>
             <% end %>
+            </div>
             </ul>
         </section>
         <section class='github-dashboard-followers'>
