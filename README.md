@@ -75,6 +75,7 @@ Finished in 10.92 seconds (files took 3.96 seconds to load)
 96 examples, 0 failures
 
 Coverage report generated for RSpec to /Users/alexandermathieu/turing/mod_3/projects/brownfield-of-dreams/coverage. 1220 / 1232 LOC (99.03%) covered.
+```
 
 IF TESTS FAILING/VIDEOS NOT LOADING DUE TO MISSING POSITIONS:
 ```
