@@ -1,18 +1,10 @@
-# Brownfield Of Dreams
+# Brownfield of Dreams
 
-This is the base repo for a brownfield project used at Turing for Backend Mod 3.
+Welcome to Brownfield of Dreams! This is a brownfield project completed by Brian Plantico, Brennan Ayers and Alexander Mathieu at during Module 3 [Turing School of Software & Design](https://turing.io/).
 
-Project Spec and Evaluation Rubric: https://github.com/turingschool-examples/brownfield-of-dreams
+The deployed site can be viewed [here](https://brownest-field.herokuapp.com/).
 
-### Project Board
-
-Students will continue to build on the existing code base using the cards within the following Github Project: https://github.com/turingschool-examples/brownfield-of-dreams/projects/1
-
-**Learning Goals and Labels**
-
-The cards are labeled in a way that correspond to learning goals or to specific areas you might personally want to focus on.
-
-Cards should be completed from top to bottom in the To Do column. Cards labeled `good first issue` are good as filler work and will allow you to practice common Rails skills.
+Go ahead and make a user account, and see what you can do!
 
 ### About the Project
 
@@ -20,41 +12,9 @@ This is a Ruby on Rails application used to organize YouTube content used for on
 
 A visitor is able to see all of the content on the application but in order to bookmark a segment they will need to register. Once registered a user can bookmark any of the segments in a tutorial page.
 
-## Local Setup
-
-First you'll need to setup an API key with YouTube and have it defined within `ENV['YOUTUBE_API_KEY']`. There will be one failing spec if you don't have this set up.
-
-Clone down the repo
-```
-$ git clone
-```
-
-Install the gem packages
-```
-$ bundle install
-```
-
-Install node packages for stimulus
-```
-$ brew install node
-$ brew install yarn
-$ yarn add stimulus
-```
-
-Set up the database
-```
-$ rake db:create
-$ rake db:migrate
-$ rake db:seed
-```
-IF VIDEOS NOT LOADING DUE TO MISSING POSITIONS:
-Run from command line:
-`rake videos:set_position_if_missing`
-
-Run the test suite:
-```ruby
-$ bundle exec rspec
-```
+## Requirements
+ * [Ruby 2.4.1](https://www.ruby-lang.org/en/downloads/) - Ruby Version
+ * [Rails 5.2.0](https://rubyonrails.org/) - Rails Version
 
 ## Technologies
 * [Stimulus](https://github.com/stimulusjs/stimulus)
@@ -65,6 +25,64 @@ $ bundle exec rspec
 * [selenium-webdriver](https://www.seleniumhq.org/docs/03_webdriver.jsp)
 * [chromedriver-helper](http://chromedriver.chromium.org/)
 
-### Versions
-* Ruby 2.4.1
-* Rails 5.2.0
+
+## Installation
+```
+$ git clone https://github.com/alexander-mathieu/brownfield_of_dreams.git
+$ cd brownfield_of_dreams
+$ bundle install
+```
+
+Install Node packages for Stimulus:
+```
+$ brew install node
+$ brew install yarn
+$ yarn add stimulus
+$ yarn add rails-ujs
+```
+
+Set up the database:
+```
+$ rake db:create
+$ rake db:migrate
+$ rake db:seed
+```
+IF VIDEOS NOT LOADING DUE TO MISSING POSITIONS:
+Run from command line:
+`rake videos:set_position_if_missing`
+
+Additionally, you'll need:
+ * An API key with YouTube and have it defined within `ENV['YOUTUBE_API_KEY']`
+ * An API key with GitHub and have it defined within `ENV['GITHUB-TOKEN']`
+ * An API key with SendGrid and have it defined within `ENV['SENDGRID-API-KEY']`
+ * A GitHub client ID defined within `ENV['GITHUB-CLIENT-ID']`
+ * A GitHub client secret defined within `ENV['GITHUB-CLIENT-SECRET']`
+
+Information on setting up a GitHub client ID/secret can be found [here](https://github.com/settings/apps)
+
+## Running Tests
+The full testing suite can be run with `$ bundle exec rspec`.
+
+Example of expected output:
+```
+..Capybara starting Puma...
+* Version 3.12.0 , codename: Llamas in Pajamas
+* Min threads: 0, max threads: 4
+* Listening on tcp://127.0.0.1:62536
+..............................................................................................
+
+Finished in 10.92 seconds (files took 3.96 seconds to load)
+96 examples, 0 failures
+
+Coverage report generated for RSpec to /Users/alexandermathieu/turing/mod_3/projects/brownfield-of-dreams/coverage. 1220 / 1232 LOC (99.03%) covered.
+
+IF TESTS FAILING/VIDEOS NOT LOADING DUE TO MISSING POSITIONS:
+```
+$ bundle exec rake videos:set_position_if_missing
+```
+
+## Local Exploration
+Once installation and database setup are complete, explore the site using the following steps:
+
+ * From the `brownfield_of_dreams` project directory, boot up a server with `rails s`
+ * Open your browser, and visit `localhost:3000/`
