@@ -25,19 +25,13 @@ RSpec.describe 'as a registered user' do
 
         OmniAuth.config.mock_auth[:github] = OmniAuth::AuthHash.new({
           provider: 'github',
-          uid: '123545',
-          credentials: { token: '765434' }
+          credentials: { token: ENV['GITHUB-TOKEN'] }
         })
 
-        VCR.use_cassette('github_dashboard') do
+        VCR.use_cassette('github_dashboard_oauth') do
           click_on 'Connect to GitHub'
 
-          @user.reload
-
           expect(current_path).to eq(dashboard_path)
-          expect(@user.github_uid).to eq('123545')
-          expect(@user.github_token).to eq('765434')
-
           expect(page).to_not have_link('Connect to GitHub')
 
           within '.github-dashboard' do
