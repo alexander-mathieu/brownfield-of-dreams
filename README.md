@@ -33,7 +33,7 @@ $ cd brownfield_of_dreams
 $ bundle install
 ```
 
-Install Node packages for Stimulus:
+Install Node, Yarn and packages:
 ```
 $ brew install node
 $ brew install yarn
