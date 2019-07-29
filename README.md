@@ -1,4 +1,4 @@
-![Brownfield of Dreams Screenshot](/rales_engine_screenshot.png?raw=true "Brownfield of Dreams Screenshot")
+![Brownfield of Dreams Screenshot](/brownfield_of_dreams_screenshot.png?raw=true "Brownfield of Dreams Screenshot")
 
 # Brownfield of Dreams
 
