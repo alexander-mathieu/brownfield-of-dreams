@@ -1,3 +1,5 @@
+![Brownfield of Dreams Screenshot](/rales_engine_screenshot.png?raw=true "Brownfield of Dreams Screenshot")
+
 # Brownfield of Dreams
 
 Welcome to Brownfield of Dreams! This is a brownfield project completed by Brian Plantico, Brennan Ayers and Alexander Mathieu at during Module 3 [Turing School of Software & Design](https://turing.io/).
