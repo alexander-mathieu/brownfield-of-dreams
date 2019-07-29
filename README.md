@@ -2,7 +2,7 @@
 
 # Brownfield of Dreams
 
-Welcome to Brownfield of Dreams! This is a brownfield project completed by Brian Plantico, Brennan Ayers and Alexander Mathieu at during Module 3 [Turing School of Software & Design](https://turing.io/).
+Welcome to _Brownfield of Dreams_! This is a brownfield project completed by Brian Plantico, Brennan Ayers and Alexander Mathieu at during Module 3 [Turing School of Software & Design](https://turing.io/).
 
 The deployed site can be viewed [here](https://brownest-field.herokuapp.com/).
 
