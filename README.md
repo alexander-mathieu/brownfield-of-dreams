@@ -64,7 +64,7 @@ Information on setting up a GitHub client ID/secret can be found [here](https://
 
 ## Running Tests
 
-The full test suite can be run with `bundle exec rspec`.
+The full test suite can be run with `$ bundle exec rspec`.
 
 Example of expected output:
 ```
@@ -89,5 +89,5 @@ $ bundle exec rake videos:set_position_if_missing
 
 Once installation and database setup are complete, explore the site using the following steps:
 
-* From the `brownfield_of_dreams` project directory, boot up a server with `rails s`
+* From the `brownfield_of_dreams` project directory, boot up a server with `$ rails s`
 * Open your browser, and visit `http://localhost:3000/`
