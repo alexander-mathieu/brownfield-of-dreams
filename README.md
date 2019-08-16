@@ -64,7 +64,7 @@ Information on setting up a GitHub client ID/secret can be found [here](https://
 
 ## Running Tests
 
-The full testing suite can be run with `$ bundle exec rspec`.
+The full test suite can be run with `bundle exec rspec`.
 
 Example of expected output:
 ```
